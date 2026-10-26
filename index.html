@@ -3,1185 +3,419 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<meta name="theme-color" content="#0d1117">
-<meta name="description" content="Koleksi add-on dan mod Minecraft. Cari mod favoritmu dan kunjungi tautan download yang tersedia.">
-
 <title>⛏️ Mod Minecraft — Download Gratis</title>
-
 <style>
-/* =========================================
-   1. RESET DAN VARIABEL
-========================================= */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-:root {
-  --bg-dark: #0d1117;
-  --bg: #161b22;
-  --bg-card: #1c2333;
-  --bg-card-hover: #232b3e;
-
-  --border: #30363d;
-  --green: #5cb85c;
-  --green-bright: #7ed957;
-  --green-dark: #3a7a2a;
-
-  --gold: #f5c542;
-  --red: #e74c3c;
-  --blue: #4a9eff;
-
-  --text: #e6edf3;
-  --text-dim: #8b949e;
-
-  --pixel-font: "Courier New", monospace;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  background-color: var(--bg-dark);
-
-  background-image:
-    linear-gradient(
-      rgba(13, 17, 23, 0.94),
-      rgba(13, 17, 23, 0.94)
-    ),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 39px,
-      rgba(92, 184, 92, 0.05) 39px,
-      rgba(92, 184, 92, 0.05) 40px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      transparent,
-      transparent 39px,
-      rgba(92, 184, 92, 0.05) 39px,
-      rgba(92, 184, 92, 0.05) 40px
-    );
-
-  color: var(--text);
-  font-family: "Segoe UI", system-ui, sans-serif;
-  min-height: 100vh;
-  line-height: 1.6;
-}
-
-button,
-input {
-  font: inherit;
-}
-
-button {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button:focus-visible,
-input:focus-visible,
-a:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
-
-::selection {
-  background: var(--green-dark);
-  color: white;
-}
-
-/* =========================================
-   2. HEADER
-========================================= */
-
-header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-
-  background: linear-gradient(
-    135deg,
-    #1a2332,
-    #0d1117
-  );
-
-  border-bottom: 3px solid var(--green);
-  box-shadow: 0 4px 20px rgba(92, 184, 92, 0.15);
-
-  padding: 16px 20px;
-}
-
-.header-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.logo-icon {
-  font-size: 2.2rem;
-  filter: drop-shadow(0 0 10px rgba(92, 184, 92, 0.6));
-
-  animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0);
+  * { margin:0; padding:0; box-sizing:border-box; }
+  :root {
+    --bg-dark:#0d1117; --bg:#161b22; --bg-card:#1c2333; --bg-card-hover:#232b3e;
+    --border:#30363d; --border-glow:#4a7c3f;
+    --green:#5cb85c; --green-bright:#7ed957; --green-dark:#3a7a2a;
+    --gold:#f5c542; --red:#e74c3c; --blue:#4a9eff;
+    --text:#e6edf3; --text-dim:#8b949e; --pixel-font:'Courier New',monospace;
   }
-
-  50% {
-    transform: translateY(-5px);
+  html { scroll-behavior:smooth; }
+  body {
+    background:var(--bg-dark);
+    background-image:
+      linear-gradient(rgba(13,17,23,.92), rgba(13,17,23,.92)),
+      repeating-linear-gradient(0deg, transparent, transparent 39px, rgba(92,184,92,.05) 39px, rgba(92,184,92,.05) 40px),
+      repeating-linear-gradient(90deg, transparent, transparent 39px, rgba(92,184,92,.05) 39px, rgba(92,184,92,.05) 40px);
+    color:var(--text); font-family:'Segoe UI',system-ui,sans-serif;
+    min-height:100vh; line-height:1.6;
   }
-}
-
-.logo h1 {
-  font-family: var(--pixel-font);
-  font-size: 1.4rem;
-  font-weight: 900;
-
-  color: var(--green-bright);
-
-  text-shadow:
-    2px 2px 0 #000,
-    0 0 20px rgba(126, 217, 87, 0.4);
-
-  letter-spacing: 1px;
-}
-
-.logo p {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  font-family: var(--pixel-font);
-}
-
-.header-stats {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.stat-pill {
-  background: rgba(92, 184, 92, 0.1);
-  border: 2px solid var(--green-dark);
-  border-radius: 8px;
-  padding: 6px 14px;
-
-  font-size: 0.8rem;
-  font-weight: 700;
-
-  display: flex;
-  align-items: center;
-  gap: 6px;
-
-  font-family: var(--pixel-font);
-}
-
-.stat-pill .val {
-  color: var(--gold);
-  font-size: 1rem;
-}
-
-/* =========================================
-   3. CONTAINER DAN HERO
-========================================= */
-
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 24px 20px 80px;
-}
-
-.hero {
-  background: linear-gradient(
-    135deg,
-    #1c2a1c,
-    #1a2332
-  );
-
-  border: 3px solid var(--green-dark);
-  border-radius: 16px;
-
-  padding: 28px;
-  margin-bottom: 24px;
-
-  box-shadow:
-    0 8px 30px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-
-  position: relative;
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "⛏️";
-
-  position: absolute;
-  right: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  font-size: 6rem;
-  opacity: 0.08;
-  pointer-events: none;
-}
-
-.hero h2 {
-  font-family: var(--pixel-font);
-  font-size: 1.5rem;
-  color: var(--green-bright);
-
-  margin-bottom: 8px;
-  text-shadow: 2px 2px 0 #000;
-
-  position: relative;
-}
-
-.hero p {
-  color: var(--text-dim);
-  font-size: 0.9rem;
-  max-width: 650px;
-
-  position: relative;
-}
-
-.hero .badges {
-  display: flex;
-  gap: 8px;
-  margin-top: 14px;
-  flex-wrap: wrap;
-}
-
-.badge {
-  background: rgba(92, 184, 92, 0.15);
-  border: 1px solid var(--green);
-  color: var(--green-bright);
-
-  padding: 4px 12px;
-  border-radius: 100px;
-
-  font-size: 0.72rem;
-  font-weight: 800;
-  font-family: var(--pixel-font);
-}
-
-/* =========================================
-   4. PENCARIAN DAN FILTER
-========================================= */
-
-.controls {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 16px;
-
-  flex-wrap: wrap;
-  align-items: center;
-}
-
-.search-wrap {
-  flex: 1;
-  min-width: 220px;
-  position: relative;
-}
-
-.search-wrap::before {
-  content: "🔍";
-
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-
-  font-size: 1.1rem;
-  pointer-events: none;
-}
-
-.search-input {
-  width: 100%;
-
-  padding: 12px 14px 12px 44px;
-
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-
-  color: var(--text);
-  font-size: 0.9rem;
-
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.search-input:focus {
-  outline: none;
-  border-color: var(--green);
-
-  box-shadow: 0 0 0 3px rgba(92, 184, 92, 0.2);
-}
-
-.search-input::placeholder {
-  color: var(--text-dim);
-}
-
-.filter-wrap {
-  display: flex;
-  gap: 6px;
-  flex-wrap: wrap;
-}
-
-.filter-btn {
-  padding: 10px 14px;
-
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 10px;
-
-  color: var(--text-dim);
-  font-weight: 800;
-  font-size: 0.78rem;
-
-  cursor: pointer;
-  transition: 0.2s;
-
-  font-family: var(--pixel-font);
-  white-space: nowrap;
-}
-
-.filter-btn:hover {
-  border-color: var(--green);
-  color: var(--text);
-}
-
-.filter-btn.active {
-  background: linear-gradient(
-    180deg,
-    var(--green),
-    var(--green-dark)
-  );
-
-  border-color: var(--green-bright);
-  color: #fff;
-
-  box-shadow: 0 0 15px rgba(92, 184, 92, 0.3);
-}
-
-/* =========================================
-   5. INFORMASI JUMLAH HASIL
-========================================= */
-
-.result-info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  color: var(--text-dim);
-  font-size: 0.85rem;
-
-  margin-bottom: 16px;
-}
-
-.result-info strong {
-  color: var(--green-bright);
-}
-
-/* =========================================
-   6. GRID MOD
-========================================= */
-
-.mod-grid {
-  display: grid;
-
-  grid-template-columns: repeat(
-    auto-fill,
-    minmax(260px, 1fr)
-  );
-
-  gap: 16px;
-}
-
-.mod-card {
-  background: var(--bg-card);
-  border: 2px solid var(--border);
-  border-radius: 14px;
-
-  overflow: hidden;
-  transition: border-color 0.25s, transform 0.25s,
-              box-shadow 0.25s, background 0.25s;
-
-  display: flex;
-  flex-direction: column;
-
-  min-width: 0;
-
-  animation: cardIn 0.4s ease-out backwards;
-}
-
-@keyframes cardIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.mod-card:hover {
-  border-color: var(--green);
-  transform: translateY(-4px);
-
-  box-shadow: 0 12px 30px rgba(92, 184, 92, 0.2);
-
-  background: var(--bg-card-hover);
-}
-
-/* =========================================
-   7. GAMBAR DAN INFORMASI MOD
-========================================= */
-
-.mod-img {
-  height: 150px;
-
-  background: linear-gradient(
-    135deg,
-    #2a3a2a,
-    #1a2332
-  );
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  font-size: 4rem;
-
-  position: relative;
-  overflow: hidden;
-
-  border-bottom: 2px solid var(--border);
-}
-
-.mod-img::after {
-  content: "";
-
-  position: absolute;
-  inset: 0;
-
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 8px,
-    rgba(0, 0, 0, 0.1) 8px,
-    rgba(0, 0, 0, 0.1) 16px
-  );
-
-  pointer-events: none;
-}
-
-.mod-img .emoji {
-  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
-  transition: transform 0.3s;
-
-  z-index: 1;
-}
-
-.mod-card:hover .mod-img .emoji {
-  transform: scale(1.15) rotate(-5deg);
-}
-
-.mod-version {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-
-  background: rgba(0, 0, 0, 0.8);
-  border: 1px solid var(--gold);
-
-  color: var(--gold);
-  padding: 2px 8px;
-  border-radius: 6px;
-
-  font-size: 0.65rem;
-  font-weight: 900;
-  font-family: var(--pixel-font);
-
-  z-index: 2;
-}
-
-.mod-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-
-  background: rgba(58, 122, 42, 0.95);
-  border: 1px solid var(--green-bright);
-
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 6px;
-
-  font-size: 0.65rem;
-  font-weight: 900;
-  font-family: var(--pixel-font);
-
-  z-index: 2;
-}
-
-.mod-body {
-  padding: 14px 16px;
-
-  flex: 1;
-
-  display: flex;
-  flex-direction: column;
-}
-
-.mod-name {
-  font-size: 1rem;
-  font-weight: 900;
-
-  color: var(--text);
-  margin-bottom: 4px;
-
-  font-family: var(--pixel-font);
-  line-height: 1.4;
-
-  overflow-wrap: anywhere;
-}
-
-.mod-author {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  margin-bottom: 8px;
-}
-
-.mod-author b {
-  color: var(--blue);
-}
-
-.mod-desc {
-  font-size: 0.8rem;
-  color: var(--text-dim);
-  line-height: 1.6;
-
-  margin-bottom: 12px;
-  flex: 1;
-
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-
-  overflow: hidden;
-  overflow-wrap: anywhere;
-}
-
-.mod-meta {
-  display: flex;
-  gap: 10px;
-
-  font-size: 0.7rem;
-  color: var(--text-dim);
-
-  margin-bottom: 12px;
-  flex-wrap: wrap;
-}
-
-.mod-meta span {
-  display: flex;
-  align-items: center;
-  gap: 3px;
-}
-
-.mod-meta .star {
-  color: var(--gold);
-}
-
-/* =========================================
-   8. TOMBOL DOWNLOAD
-========================================= */
-
-.mod-actions {
-  display: flex;
-  gap: 6px;
-  margin-top: auto;
-}
-
-.btn-download {
-  flex: 1;
-  min-width: 0;
-
-  background: linear-gradient(
-    180deg,
-    var(--green),
-    var(--green-dark)
-  );
-
-  border: 2px solid var(--green-bright);
-  color: #fff;
-
-  padding: 10px 12px;
-  border-radius: 8px;
-
-  font-weight: 900;
-  font-size: 0.82rem;
-
-  cursor: pointer;
-  text-decoration: none;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-
-  font-family: var(--pixel-font);
-  text-align: center;
-
-  transition: 0.15s;
-
-  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.4);
-}
-
-.btn-download:hover {
-  background: linear-gradient(
-    180deg,
-    var(--green-bright),
-    var(--green)
-  );
-
-  transform: translateY(-1px);
-
-  box-shadow:
-    0 4px 0 rgba(0, 0, 0, 0.4),
-    0 0 15px rgba(92, 184, 92, 0.4);
-}
-
-.btn-download:active {
-  transform: translateY(2px);
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
-
-.btn-download:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  box-shadow: none;
-  transform: none;
-}
-
-/* =========================================
-   9. HASIL KOSONG
-========================================= */
-
-.empty {
-  grid-column: 1 / -1;
-
-  text-align: center;
-  padding: 60px 20px;
-
-  color: var(--text-dim);
-
-  background: rgba(28, 35, 51, 0.5);
-  border: 2px dashed var(--border);
-  border-radius: 14px;
-}
-
-.empty .e-icon {
-  font-size: 4rem;
-  opacity: 0.5;
-  margin-bottom: 12px;
-}
-
-.empty h3 {
-  font-family: var(--pixel-font);
-  font-size: 1.2rem;
-
-  color: var(--text);
-  margin-bottom: 6px;
-}
-
-.empty p {
-  font-size: 0.85rem;
-}
-
-/* =========================================
-   10. FOOTER
-========================================= */
-
-footer {
-  background: var(--bg);
-
-  border-top: 3px solid var(--border);
-
-  padding: 24px 20px;
-  text-align: center;
-
-  color: var(--text-dim);
-  font-size: 0.8rem;
-  font-family: var(--pixel-font);
-}
-
-footer b {
-  color: var(--green-bright);
-}
-
-footer .disclaimer {
-  margin-top: 8px;
-
-  font-size: 0.7rem;
-  max-width: 650px;
-
-  margin-left: auto;
-  margin-right: auto;
-
-  opacity: 0.8;
-}
-
-/* =========================================
-   11. RESPONSIVE HP DAN TABLET
-========================================= */
-
-@media (max-width: 700px) {
   header {
-    padding: 14px;
+    position:sticky; top:0; z-index:100;
+    background:linear-gradient(135deg,#1a2332,#0d1117);
+    border-bottom:3px solid var(--green);
+    box-shadow:0 4px 20px rgba(92,184,92,.15);
+    padding:16px 20px;
   }
-
   .header-inner {
-    justify-content: center;
+    max-width:1100px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:16px; flex-wrap:wrap;
   }
-
+  .logo { display:flex; align-items:center; gap:12px; }
+  .logo-icon {
+    font-size:2.2rem;
+    filter:drop-shadow(0 0 10px rgba(92,184,92,.6));
+    animation:float 3s ease-in-out infinite;
+  }
+  @keyframes float { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-5px);} }
   .logo h1 {
-    font-size: 1.1rem;
+    font-family:var(--pixel-font); font-size:1.4rem; font-weight:900;
+    color:var(--green-bright);
+    text-shadow:2px 2px 0 #000, 0 0 20px rgba(126,217,87,.4);
+    letter-spacing:1px;
   }
-
-  .logo p {
-    font-size: 0.62rem;
+  .logo p { font-size:.72rem; color:var(--text-dim); font-family:var(--pixel-font); }
+  .header-stats { display:flex; gap:12px; flex-wrap:wrap; }
+  .stat-pill {
+    background:rgba(92,184,92,.1); border:2px solid var(--green-dark);
+    border-radius:8px; padding:6px 14px;
+    font-size:.8rem; font-weight:700;
+    display:flex; align-items:center; gap:6px;
+    font-family:var(--pixel-font);
   }
-
-  .header-stats {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .container {
-    padding: 18px 14px 60px;
-  }
-
+  .stat-pill .val { color:var(--gold); font-size:1rem; }
+  .container { max-width:1100px; margin:0 auto; padding:20px 20px 80px; }
   .hero {
-    padding: 22px 18px;
+    background:linear-gradient(135deg,#1c2a1c,#1a2332);
+    border:3px solid var(--green-dark); border-radius:16px;
+    padding:24px; margin-bottom:24px;
+    box-shadow:0 8px 30px rgba(0,0,0,.4), inset 0 1px 0 rgba(255,255,255,.05);
+    position:relative; overflow:hidden;
   }
-
-  .hero h2 {
-    font-size: 1.2rem;
-  }
-
-  .hero p {
-    font-size: 0.84rem;
-  }
-
   .hero::before {
-    font-size: 4rem;
-    right: 10px;
+    content:"⛏️"; position:absolute; right:20px; top:50%; transform:translateY(-50%);
+    font-size:6rem; opacity:.08; pointer-events:none;
   }
-
-  .controls {
-    align-items: stretch;
+  .hero h2 {
+    font-family:var(--pixel-font); font-size:1.5rem; color:var(--green-bright);
+    margin-bottom:8px; text-shadow:2px 2px 0 #000;
   }
-
-  .search-wrap {
-    flex-basis: 100%;
-  }
-
-  .filter-wrap {
-    width: 100%;
-    gap: 6px;
-  }
-
-  .filter-btn {
-    font-size: 0.7rem;
-    padding: 8px 10px;
-  }
-
-  .mod-grid {
-    grid-template-columns: repeat(
-      auto-fill,
-      minmax(220px, 1fr)
-    );
-  }
-}
-
-@media (max-width: 480px) {
-  .mod-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .mod-img {
-    height: 160px;
-  }
-
-  .hero .badges {
-    gap: 6px;
-  }
-
+  .hero p { color:var(--text-dim); font-size:.9rem; max-width:600px; }
+  .hero .badges { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
   .badge {
-    font-size: 0.65rem;
-    padding: 4px 9px;
+    background:rgba(92,184,92,.15); border:1px solid var(--green);
+    color:var(--green-bright); padding:4px 12px; border-radius:100px;
+    font-size:.72rem; font-weight:800; font-family:var(--pixel-font);
   }
-
-  .result-info {
-    font-size: 0.78rem;
+  .controls {
+    display:flex; gap:12px; margin-bottom:20px;
+    flex-wrap:wrap; align-items:center;
   }
-}
-
-/* =========================================
-   12. PENGATURAN AKSESIBILITAS
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  .search-wrap { flex:1; min-width:220px; position:relative; }
+  .search-wrap::before {
+    content:"🔍"; position:absolute; left:14px; top:50%; transform:translateY(-50%);
+    font-size:1.1rem;
   }
-}
-
-/* Scrollbar */
-
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-dark);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--border);
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--green-dark);
-}
+  .search-input {
+    width:100%; padding:12px 14px 12px 44px;
+    background:var(--bg-card); border:2px solid var(--border);
+    border-radius:10px; color:var(--text); font-size:.9rem;
+    font-family:inherit; transition:.2s;
+  }
+  .search-input:focus {
+    outline:none; border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(92,184,92,.2);
+  }
+  .search-input::placeholder { color:var(--text-dim); }
+  .filter-wrap { display:flex; gap:6px; flex-wrap:wrap; }
+  .filter-btn {
+    padding:10px 16px; background:var(--bg-card);
+    border:2px solid var(--border); border-radius:10px;
+    color:var(--text-dim); font-weight:800; font-size:.78rem;
+    cursor:pointer; transition:.2s; font-family:var(--pixel-font);
+    white-space:nowrap;
+  }
+  .filter-btn:hover { border-color:var(--green); color:var(--text); }
+  .filter-btn.active {
+    background:linear-gradient(180deg,var(--green),var(--green-dark));
+    border-color:var(--green-bright); color:#fff;
+    box-shadow:0 0 15px rgba(92,184,92,.4);
+  }
+  .mod-grid {
+    display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr));
+    gap:16px;
+  }
+  .mod-card {
+    background:var(--bg-card); border:2px solid var(--border);
+    border-radius:14px; overflow:hidden; transition:.25s;
+    display:flex; flex-direction:column; position:relative;
+    animation:cardIn .4s ease-out backwards;
+  }
+  @keyframes cardIn { 0%{opacity:0;transform:translateY(20px);} 100%{opacity:1;transform:translateY(0);} }
+  .mod-card:hover {
+    border-color:var(--green); transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(92,184,92,.25); background:var(--bg-card-hover);
+  }
+  .mod-img {
+    height:140px; background:linear-gradient(135deg,#2a3a2a,#1a2332);
+    display:flex; align-items:center; justify-content:center;
+    font-size:4rem; position:relative; overflow:hidden;
+    border-bottom:2px solid var(--border);
+  }
+  .mod-img::after {
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(45deg, transparent, transparent 8px, rgba(0,0,0,.1) 8px, rgba(0,0,0,.1) 16px);
+    pointer-events:none;
+  }
+  .mod-img .emoji {
+    filter:drop-shadow(0 6px 10px rgba(0,0,0,.5));
+    transition:transform .3s; z-index:1;
+  }
+  .mod-card:hover .mod-img .emoji { transform:scale(1.15) rotate(-5deg); }
+  .mod-version {
+    position:absolute; top:10px; right:10px;
+    background:rgba(0,0,0,.7); border:1px solid var(--gold);
+    color:var(--gold); padding:2px 8px; border-radius:6px;
+    font-size:.65rem; font-weight:900; font-family:var(--pixel-font); z-index:2;
+  }
+  .mod-category {
+    position:absolute; top:10px; left:10px;
+    background:rgba(92,184,92,.9); color:#fff;
+    padding:2px 8px; border-radius:6px;
+    font-size:.65rem; font-weight:900; font-family:var(--pixel-font); z-index:2;
+  }
+  .mod-body { padding:14px 16px; flex:1; display:flex; flex-direction:column; }
+  .mod-name {
+    font-size:1rem; font-weight:900; color:var(--text);
+    margin-bottom:4px; font-family:var(--pixel-font); line-height:1.3;
+  }
+  .mod-author { font-size:.72rem; color:var(--text-dim); margin-bottom:8px; }
+  .mod-author b { color:var(--blue); }
+  .mod-desc {
+    font-size:.8rem; color:var(--text-dim); line-height:1.5;
+    margin-bottom:12px; flex:1;
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+  }
+  .mod-meta {
+    display:flex; gap:10px; font-size:.7rem; color:var(--text-dim);
+    margin-bottom:10px; flex-wrap:wrap;
+  }
+  .mod-meta span { display:flex; align-items:center; gap:3px; }
+  .mod-meta .star { color:var(--gold); }
+  .mod-actions { display:flex; gap:6px; }
+  .btn-download {
+    flex:1;
+    background:linear-gradient(180deg,var(--green),var(--green-dark));
+    border:2px solid var(--green-bright); color:#fff;
+    padding:10px 12px; border-radius:8px;
+    font-weight:900; font-size:.82rem; cursor:pointer; text-decoration:none;
+    display:flex; align-items:center; justify-content:center; gap:5px;
+    font-family:var(--pixel-font); transition:.15s;
+    box-shadow:0 3px 0 rgba(0,0,0,.4);
+  }
+  .btn-download:hover {
+    background:linear-gradient(180deg,var(--green-bright),var(--green));
+    transform:translateY(-1px);
+    box-shadow:0 4px 0 rgba(0,0,0,.4), 0 0 15px rgba(92,184,92,.5);
+  }
+  .btn-download:active { transform:translateY(2px); box-shadow:0 1px 0 rgba(0,0,0,.4); }
+  .empty {
+    grid-column:1/-1; text-align:center; padding:60px 20px; color:var(--text-dim);
+  }
+  .empty .e-icon { font-size:4rem; opacity:.4; margin-bottom:12px; }
+  .empty h3 { font-family:var(--pixel-font); font-size:1.2rem; color:var(--text); margin-bottom:6px; }
+  .empty p { font-size:.85rem; }
+  footer {
+    background:var(--bg); border-top:3px solid var(--border);
+    padding:20px; text-align:center; color:var(--text-dim);
+    font-size:.8rem; font-family:var(--pixel-font);
+  }
+  footer b { color:var(--green-bright); }
+  footer .disclaimer {
+    margin-top:6px; font-size:.7rem; max-width:600px;
+    margin-left:auto; margin-right:auto; opacity:.7;
+  }
+  @media (max-width:600px) {
+    .logo h1 { font-size:1.1rem; }
+    .logo p { font-size:.65rem; }
+    .hero h2 { font-size:1.2rem; }
+    .mod-grid { grid-template-columns:1fr; }
+    .filter-btn { font-size:.7rem; padding:8px 12px; }
+    .header-stats { width:100%; justify-content:center; }
+  }
+  ::-webkit-scrollbar { width:10px; }
+  ::-webkit-scrollbar-track { background:var(--bg-dark); }
+  ::-webkit-scrollbar-thumb { background:var(--border); border-radius:5px; }
+  ::-webkit-scrollbar-thumb:hover { background:var(--green-dark); }
 </style>
 </head>
-
 <body>
-
-<!-- =========================================
-     HEADER
-========================================= -->
 
 <header>
   <div class="header-inner">
-
     <div class="logo">
-      <span class="logo-icon" aria-hidden="true">⛏️</span>
-
+      <span class="logo-icon">⛏️</span>
       <div>
         <h1>MOD MINECRAFT</h1>
-        <p>KOLEKSI ADD-ON &amp; MOD</p>
+        <p>DOWNLOAD GRATIS · 100% AMAN</p>
       </div>
     </div>
-
     <div class="header-stats">
-      <div class="stat-pill">
-        📦 Total:
-        <span class="val" id="totalMods">0</span>
-      </div>
-
-      <div class="stat-pill">
-        ⭐ Rating:
-        <span class="val">4.8</span>
-      </div>
+      <div class="stat-pill">📦 Total: <span class="val" id="totalMods">0</span></div>
+      <div class="stat-pill">⭐ Rating: <span class="val">4.8</span></div>
     </div>
-
   </div>
 </header>
 
-<!-- =========================================
-     KONTEN UTAMA
-========================================= -->
+<div class="container">
 
-<main class="container">
-
-  <!-- HERO -->
-
-  <section class="hero">
+  <div class="hero">
     <h2>⛏️ Koleksi Mod Minecraft Terbaik</h2>
-
     <p>
-      Temukan add-on, senjata, armor, mob, shader,
-      dan berbagai mod untuk menambah keseruan bermain Minecraft.
-      Cari mod favoritmu dan kunjungi tautan download yang tersedia!
-      🚀
+      Kumpulan mod pilihan untuk menambah seru petualanganmu di dunia Minecraft.
+      Tinggal klik tombol download, langsung gas! 🚀
     </p>
-
     <div class="badges">
-      <span class="badge">🧩 BERAGAM MOD</span>
-      <span class="badge">🔎 MUDAH DICARI</span>
-      <span class="badge">📱 RESPONSIF</span>
-      <span class="badge">🎮 MINECRAFT</span>
+      <span class="badge">✅ GRATIS</span>
+      <span class="badge">🔒 AMAN</span>
+      <span class="badge">⚡ CEPAT</span>
+      <span class="badge">🔄 UPDATE</span>
     </div>
-  </section>
-
-  <!-- PENCARIAN -->
-
-  <section aria-label="Cari dan filter mod">
-
-    <div class="controls">
-
-      <div class="search-wrap">
-        <input
-          type="search"
-          class="search-input"
-          id="searchInput"
-          placeholder="Cari nama, pembuat, atau mod..."
-          aria-label="Cari mod Minecraft"
-          autocomplete="off"
-        >
-      </div>
-
-      <div class="filter-wrap" id="filterWrap">
-
-        <button
-          type="button"
-          class="filter-btn active"
-          data-cat="all"
-          aria-pressed="true"
-        >
-          Semua
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="addon"
-          aria-pressed="false"
-        >
-          🧩 Add-on
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="weapon"
-          aria-pressed="false"
-        >
-          ⚔️ Weapon
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="armor"
-          aria-pressed="false"
-        >
-          🛡️ Armor
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="world"
-          aria-pressed="false"
-        >
-          🌍 World
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="mob"
-          aria-pressed="false"
-        >
-          🐲 Mob
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="utility"
-          aria-pressed="false"
-        >
-          🔧 Utility
-        </button>
-
-        <button
-          type="button"
-          class="filter-btn"
-          data-cat="shader"
-          aria-pressed="false"
-        >
-          ✨ Shader
-        </button>
-
-      </div>
-    </div>
-
-  </section>
-
-  <!-- INFORMASI HASIL -->
-
-  <div class="result-info">
-    <span id="resultCount" aria-live="polite">
-      Memuat koleksi mod...
-    </span>
   </div>
 
-  <!-- DAFTAR MOD -->
+  <div class="controls">
+    <div class="search-wrap">
+      <input type="text" class="search-input" id="searchInput" placeholder="Cari nama mod...">
+    </div>
+    <div class="filter-wrap" id="filterWrap">
+      <button class="filter-btn active" data-cat="all">Semua</button>
+      <button class="filter-btn" data-cat="addon">🧩 Add-on</button>
+      <button class="filter-btn" data-cat="weapon">⚔️ Weapon</button>
+      <button class="filter-btn" data-cat="armor">🛡️ Armor</button>
+      <button class="filter-btn" data-cat="world">🌍 World</button>
+      <button class="filter-btn" data-cat="mob">🐲 Mob</button>
+      <button class="filter-btn" data-cat="utility">🔧 Utility</button>
+      <button class="filter-btn" data-cat="shader">✨ Shader</button>
+    </div>
+  </div>
 
-  <section
-    class="mod-grid"
-    id="modGrid"
-    aria-label="Daftar mod Minecraft"
-  >
-  </section>
+  <div class="mod-grid" id="modGrid"></div>
 
-</main>
-
-<!-- =========================================
-     FOOTER
-========================================= -->
+</div>
 
 <footer>
-  <p>
-    Dibuat dengan ❤️ oleh <b>Kamu</b>
-  </p>
-
-  <p>
-    Powered by GitHub Pages
-  </p>
-
+  <p>Dibuat dengan ❤️ oleh <b>Kamu</b> · Powered by GitHub Pages</p>
   <p class="disclaimer">
-    Semua mod merupakan milik pembuat aslinya.
-    Website ini menyediakan tautan download yang ditambahkan
-    oleh pengelola. Periksa sumber dan kompatibilitas file
-    sebelum mengunduh. Rating dan informasi unduhan merupakan
-    data yang ditampilkan oleh pengelola, bukan verifikasi otomatis.
+    ⚠️ Semua mod adalah milik pembuat aslinya. Website ini hanya mengumpulkan link resmi.
+    Selalu download dari sumber terpercaya.
   </p>
 </footer>
 
-<!-- =========================================
-     JAVASCRIPT
-========================================= -->
-
 <script>
-"use strict";
-
-/* =========================================
-   1. DATA MOD
-
-   Untuk menambahkan mod, masukkan data baru
-   ke dalam array MODS di bawah ini.
-========================================= */
+/* ================================================================
+   👇 DATA MOD — TINGGAL EDIT DI SINI 👇
+   ================================================================ */
 
 const MODS = [
-
+  // ===== MOD PERTAMA KAMU (SUDAH TERISI) =====
   {
     id: 1,
-
     name: "Torch Offhand BH",
-
     author: "BH Creator",
-
     category: "addon",
-
     emoji: "🔦",
-
     version: "v3.9.5",
-
     rating: 4.8,
-
     downloads: "10.9 KB",
+    desc: "Add-on Minecraft Bedrock yang memungkinkan kamu memegang obor di tangan kiri (offhand). Praktis untuk eksplorasi malam tanpa kehilangan sumber cahaya.",
+    link: "https://www.mediafire.com/file/qywov0zighrv4if/Torch_Offhand_BH_v3.9.5.mcpack/file"
+  },
 
-    desc:
-      "Add-on Minecraft Bedrock yang memungkinkan " +
-      "kamu memegang obor di tangan kiri (offhand). " +
-      "Praktis untuk eksplorasi malam tanpa kehilangan " +
-      "sumber cahaya.",
+  // ===== SLOT KOSONG — ISI MOD KEDUA KAMU DI SINI =====
+  // Copy blok { ... } di bawah, lalu isi sesuai mod-mu
+  // {
+  //   id: 2,
+  //   name: "Nama Mod Kedua",
+  //   author: "Pembuatnya",
+  //   category: "weapon",
+  //   emoji: "⚔️",
+  //   version: "1.20.1",
+  //   rating: 4.7,
+  //   downloads: "5M+",
+  //   desc: "Deskripsi mod kedua kamu di sini.",
+  //   link: "https://link-download-mod-kedua.com"
+  // },
 
-    link:
-      "https://www.mediafire.com/file/qywov0zighrv4if/" +
-      "Torch_Offhand_BH_v3.9.5.mcpack/file"
-  }
-
-  /*
-    CONTOH MOD KEDUA:
-
-    Tambahkan koma setelah tanda } mod sebelumnya,
-    lalu hapus komentar pada contoh berikut.
-
-    ,{
-      id: 2,
-      name: "Epic Weapons",
-      author: "Nama Creator",
-      category: "weapon",
-      emoji: "⚔️",
-      version: "1.0.0",
-      rating: 4.7,
-      downloads: "5 MB",
-      desc: "Add-on senjata untuk petualangan Minecraft.",
-      link: "https://example.com/epic-weapons"
-    }
-
-    Ganti semua informasi contoh dengan data asli.
-  */
-
+  // ===== SLOT KOSONG LAINNYA — TINGGAL COPY & ISI =====
 ];
 
-/* =========================================
-   2. LABEL KATEGORI
-========================================= */
+/* ================================================================
+   RENDER LOGIC
+   ================================================================ */
 
 const CAT_LABELS = {
-  addon: "🧩 Add-on",
-  weapon: "⚔️ Weapon",
-  armor: "🛡️ Armor",
-  world: "🌍 World",
-  mob: "🐲 Mob",
-  utility: "🔧 Utility",
-  shader: "✨ Shader"
+  addon: "🧩 Add-on", weapon: "⚔️ Weapon", armor: "🛡️ Armor",
+  world: "🌍 World", mob: "🐲 Mob", utility: "🔧 Utility", shader: "✨ Shader",
 };
 
-/* =========================================
-   3. AMBIL ELEMEN HTML
-========================================= */
+let currentFilter = 'all';
+let currentSearch = '';
 
-const grid = document.getElementById("modGrid");
+const grid = document.getElementById('modGrid');
+const searchInput = document.getElementById('searchInput');
+const filterWrap = document.getElementById('filterWrap');
+const totalModsEl = document.getElementById('totalMods');
 
-const searchInput =
-  document.getElementById("searchInput");
+function renderMods() {
+  const filtered = MODS.filter(mod => {
+    const matchCat = currentFilter === 'all' || mod.category === currentFilter;
+    const matchSearch = mod.name.toLowerCase().includes(currentSearch.toLowerCase())
+      || mod.author.toLowerCase().includes(currentSearch.toLowerCase())
+      || mod.desc.toLowerCase().includes(currentSearch.toLowerCase());
+    return matchCat && matchSearch;
+  });
 
-const filterWrap =
-  document.getElementById("filterWrap");
+  grid.innerHTML = '';
 
-const totalModsEl =
-  document.getElementById("totalMods");
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty">
+        <div class="e-icon">🔍</div>
+        <h3>Tidak ada mod ditemukan</h3>
+        <p>Coba kata kunci lain atau ganti filter kategori.</p>
+      </div>
+    `;
+    return;
+  }
 
-const resultCount =
-  document.getElementById("resultCount");
+  filtered.forEach((mod, i) => {
+    const card = document.createElement('div');
+    card.className = 'mod-card';
+    card.style.animationDelay = (i * 0.05) + 's';
+    card.innerHTML = `
+      <div class="mod-img">
+        <span class="mod-category">${CAT_LABELS[mod.category] || mod.category}</span>
+        <span class="mod-version">${mod.version}</span>
+        <span class="emoji">${mod.emoji}</span>
+      </div>
+      <div class="mod-body">
+        <div class="mod-name">${escapeHtml(mod.name)}</div>
+        <div class="mod-author">oleh <b>${escapeHtml(mod.author)}</b></div>
+        <div class="mod-desc">${escapeHtml(mod.desc)}</div>
+        <div class="mod-meta">
+          <span class="star">⭐ ${mod.rating}</span>
+          <span>📥 ${mod.downloads}</span>
+        </div>
+        <div class="mod-actions">
+          <a class="btn-download" href="${mod.link}" target="_blank" rel="noopener">
+            ⬇️ Download
+          </a>
+        </div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
 
-/* =========================================
-   4. STATUS PENCARIAN DAN FILTER
-========================================= */
+function escapeHtml(str) {
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
 
-let currentFil
+searchInput.addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  renderMods();
+});
+
+filterWrap.addEventListener('click', (e) => {
+  const btn = e.target.closest('.filter-btn');
+  if (!btn) return;
+  filterWrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentFilter = btn.dataset.cat;
+  renderMods();
+});
+
+totalModsEl.textContent = MODS.length;
+renderMods();
+</script>
+</body>
+</html>
